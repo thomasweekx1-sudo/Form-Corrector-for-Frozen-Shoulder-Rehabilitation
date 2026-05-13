@@ -114,7 +114,7 @@ A potentiometer selects between the three exercises. A toggle switch controls th
 6. Connect the toggle switch to analog pin A3 with INPUT_PULLUP.
 7. Secure both breadboards, the Arduino, and all four motors to the armband. Motors are positioned at the four anatomical locations described above. The IMU is placed flat against the lateral bicep.
 
-See [`/schematics`](./schematics) for the full wiring diagram.
+See [schematics](./visuals/schematics) for the full wiring diagram.
 
 ---
 
