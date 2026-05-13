@@ -31,9 +31,9 @@ Frozen shoulder, clinically known as adhesive capsulitis, is a painful inflammat
 
 ### The Core Problem: Unsupervised Compensation
 
-When a movement causes pain, the human body instinctively finds a way around it. In shoulder rehabilitation, this takes the form of compensatory movements: shrugging the shoulder toward the ear, swinging the arm forward out of the correct plane, internally rotating the humerus, or letting the elbow flare out from the ribcage. These are not conscious choices — they are reflexive strategies to avoid pain [4]. In a clinical setting, a physiotherapist spots and corrects these deviations immediately. At home, there is nobody watching.
+When a movement causes pain, the human body instinctively finds a way around it. In shoulder rehabilitation, this takes the form of compensatory movements: shrugging the shoulder toward the ear, swinging the arm forward out of the correct plane, internally rotating the humerus, or letting the elbow flare out from the ribcage. These are not conscious choices, they are reflexive strategies to avoid pain [4]. In a clinical setting, a physiotherapist spots and corrects these deviations immediately. At home, there is nobody watching.
 
-Studies confirm this is a serious and widespread issue. Research on unsupervised home exercise programs for shoulder rehabilitation shows that adherence to prescribed exercise protocols is typically around 50%, and that quality of execution degrades even more dramatically than adherence [5]. A key study on unsupervised shoulder abduction exercises found that after just two weeks, the majority of participants were no longer performing the exercise with correct form — even when they had been carefully instructed [6]. A patient who diligently practices bad form every day is not recovering; they are reinforcing a compensation pattern that can cause secondary injuries and delay healing [7].
+Studies confirm this is a serious and widespread issue. Research on unsupervised home exercise programs for shoulder rehabilitation shows that adherence to prescribed exercise protocols is typically around 50%, and that quality of execution degrades even more dramatically than adherence [5]. A key study on unsupervised shoulder abduction exercises found that after just two weeks, the majority of participants were no longer performing the exercise with correct form, even when they had been carefully instructed [6]. A patient who diligently practices bad form every day is not recovering; they are reinforcing a compensation pattern that can cause secondary injuries and delay healing [7].
 
 ### Existing Solutions and Their Limitations
 
@@ -41,21 +41,21 @@ Researchers and clinicians have explored several approaches to extend therapist 
 
 **Mirror therapy and visual feedback** use a patient's own reflection to increase body awareness during exercise. Studies in frozen shoulder populations show short-term improvements in pain and range of motion, and visual feedback slightly outperforms pure mirror therapy [8, 9]. However, these approaches have a fundamental limitation in the home context: they require the patient to simultaneously perform a painful exercise and visually monitor their own form. This cognitive dual-task is difficult, especially when focusing on a stiff and painful joint. The patient also needs to be positioned correctly relative to the mirror, which is impractical for all three of the relevant exercises.
 
-**Smartphone camera-based pose estimation** apps use computer vision (MediaPipe, BlazePose, OpenPose) to track body keypoints and evaluate exercise quality [10]. These systems are accessible and promising — one study achieved 89% accuracy for range-of-motion classification and 98% for compensatory pattern detection in a controlled setting [11]. But real-world performance degrades substantially with occlusion, poor lighting, suboptimal camera angles, and the inherent difficulty of tracking subtle joint rotations in 2D video [12]. More importantly, camera-based systems deliver after-the-fact feedback (a score or color code after a set), not real-time correction during the movement. And they require the phone to be propped up at a specific angle and distance — adding setup friction that erodes compliance.
+**Smartphone camera-based pose estimation** apps use computer vision (MediaPipe, BlazePose, OpenPose) to track body keypoints and evaluate exercise quality [10]. These systems are accessible and promising, one study achieved 89% accuracy for range-of-motion classification and 98% for compensatory pattern detection in a controlled setting [11]. But real-world performance degrades substantially with occlusion, poor lighting, suboptimal camera angles, and the inherent difficulty of tracking subtle joint rotations in 2D video [12]. More importantly, camera-based systems deliver after-the-fact feedback (a score or color code after a set), not real-time correction during the movement. And they require the phone to be propped up at a specific angle and distance, adding setup friction that erodes compliance.
 
-**Wearable IMU-based systems** with visual or audio biofeedback represent the closest prior work to our approach. Systems using accelerometers and gyroscopes placed on the upper arm can accurately track range of motion and flag deviations, and IMU sensors have become the dominant choice in wearable rehabilitation research precisely because they are compact, robust, and body-fixed [13]. However, most existing systems deliver feedback as a number on a screen or a post-exercise summary — modalities that require the patient to look away from what they are doing. One study found statistically significant differences in feedback accuracy across exercises using the same smartphone-based approach, highlighting that the feedback method needs to match the exercise geometry [10].
+**Wearable IMU-based systems** with visual or audio biofeedback represent the closest prior work to our approach. Systems using accelerometers and gyroscopes placed on the upper arm can accurately track range of motion and flag deviations, and IMU sensors have become the dominant choice in wearable rehabilitation research precisely because they are compact, robust, and body-fixed [13]. However, most existing systems deliver feedback as a number on a screen or a post-exercise summary, modalities that require the patient to look away from what they are doing. One study found statistically significant differences in feedback accuracy across exercises using the same smartphone-based approach, highlighting that the feedback method needs to match the exercise geometry [10].
 
-**Laser pointer and alignment guides** — a low-tech approach sometimes used in clinics — involve the patient keeping a laser dot on a fixed target on a wall. This works for single-plane movements in a supervised setting but provides no feedback about rotational deviations, requires specific room setup, and offers no memory of what a "correct" path looks like for a specific patient.
+**Laser pointer and alignment guides** — a low-tech approach, sometimes used in clinics, involve the patient keeping a laser dot on a fixed target on a wall. This works for single-plane movements in a supervised setting but provides no feedback about rotational deviations, requires specific room setup, and offers no memory of what a "correct" path looks like for a specific patient.
 
 ### Why Haptic Feedback Is Different
 
-Vibrotactile (haptic) feedback is a fundamentally different communication channel. It requires no visual attention, no after-the-fact reflection, and no cognitive overhead. When a motor on the inside of the arm buzzes, the patient instinctively moves away from it — the corrective response is reflexive, not deliberate. This closed-loop, body-centered feedback approach has been validated in rehabilitation contexts: a wearable haptic system for ergonomic posture training using IMU data showed that real-time vibration feedback successfully reduced adverse arm movements in participants performing repetitive tasks [14]. The key insight is that vibration applied at the exact location of the deviation provides spatial information that a screen-based alert simply cannot match.
+Vibrotactile (haptic) feedback is a fundamentally different communication channel. It requires no visual attention, no after-the-fact reflection, and no cognitive overhead. When a motor on the inside of the arm buzzes, the patient instinctively moves away from it, the corrective response is reflexive, not deliberate. This closed-loop, body-centered feedback approach has been validated in rehabilitation contexts: a wearable haptic system for ergonomic posture training using IMU data showed that real-time vibration feedback successfully reduced adverse arm movements in participants performing repetitive tasks [14]. The key insight is that vibration applied at the exact location of the deviation provides spatial information that a screen-based alert simply cannot match.
 
 The DRV2605L haptic driver used in our system is specifically engineered for this kind of application, providing a closed-loop actuator control system with a built-in library of over 100 tactile effects for high-quality, consistent vibration patterns [15].
 
 ### Our Approach
 
-We built a smart armband strapped to the upper bicep. Four vibration motors are positioned around the arm — front, back, underside, and outside. A single MPU6050 IMU tracks the arm's 3D position and drift in real time. The device operates in two modes, toggled by a physical switch: a **Record Mode** where the correct path for a specific patient is recorded once (ideally guided by the therapist), and a **Compare Mode** where the device monitors each subsequent repetition and fires the appropriate motor the moment a deviation exceeds a threshold. Three key exercises are supported, selectable via a potentiometer: shoulder abduction (sideways lift), forward flexion, and external rotation. Each exercise targets a different compensation pattern with a different subset of motors.
+We built a smart armband strapped to the upper bicep. Four vibration motors are positioned around the arm, front, back, underside, and outside. A single MPU6050 IMU tracks the arm's 3D position and drift in real time. The device operates in two modes, toggled by a physical switch: a **Record Mode** where the correct path for a specific patient is recorded once (ideally guided by the therapist), and a **Compare Mode** where the device monitors each subsequent repetition and fires the appropriate motor the moment a deviation exceeds a threshold. Three key exercises are supported, selectable via a potentiometer: shoulder abduction (sideways lift), forward flexion, and external rotation. Each exercise targets a different compensation pattern with a different subset of motors.
 
 ---
 
@@ -92,9 +92,9 @@ Four DRV2605L haptic drivers control four vibration motors placed around the arm
 
 | Motor | Position | Cue meaning |
 |-------|----------|-------------|
-| Motor 1 | Inside the arm (front of bicep / rib side) | Arm is drifting forward — move backward |
+| Motor 1 | Inside the arm (front of bicep / rib side) | Arm is drifting forwar: move backward |
 | Motor 2 | Underside of the arm (tricep side) | Used in exercise-specific feedback |
-| Motor 3 | Outside of the arm (back of bicep / lateral) | Arm is drifting backward — move forward |
+| Motor 3 | Outside of the arm (back of bicep / lateral) | Arm is drifting backward: move forward |
 | Motor 4 | Outside of the arm (tricep side) | Used in exercise-specific feedback |
 
 The feedback principle is intentionally intuitive: **the motor that buzzes is on the side the arm is drifting toward**. The patient naturally moves away from the sensation, self-correcting without conscious thought.
@@ -121,7 +121,7 @@ See [`/schematics`](./schematics) for the full wiring diagram.
 
 ### Step 3 — The Three Exercises & Cheat Detection
 
-All three exercises use the same underlying **Record & Compare** logic. The therapist (or the patient on first use) performs one correct repetition in Record Mode. The device stores the arm's natural drift profile across the full range of motion. In Compare Mode, every subsequent repetition is measured against that stored profile. Only deviations that exceed the threshold — not the raw drift itself — trigger feedback. This means the device adapts to each individual patient's anatomy and natural movement pattern rather than enforcing a rigid, population-average "correct path."
+All three exercises use the same underlying **Record & Compare** logic. The therapist (or the patient on first use) performs one correct repetition in Record Mode. The device stores the arm's natural drift profile across the full range of motion. In Compare Mode, every subsequent repetition is measured against that stored profile. Only deviations that exceed the threshold, not the raw drift itself, trigger feedback. This means the device adapts to each individual patient's anatomy and natural movement pattern rather than enforcing a rigid, population-average "correct path."
 
 ---
 
@@ -129,10 +129,10 @@ All three exercises use the same underlying **Record & Compare** logic. The ther
 
 **Goal:** Lift the arm straight out to the side up to 90°, parallel to the wall, in the strict frontal plane.
 
-**The cheat:** To avoid glenohumeral impingement pain, patients swing the arm forward (like a door opening) or internally rotate (twist) the humerus. Both deviations move the greater tubercle away from the acromion, reducing pain — but also defeating the therapeutic purpose of the exercise.
+**The cheat:** To avoid glenohumeral impingement pain, patients swing the arm forward (like a door opening) or internally rotate (twist) the humerus.Both movements move the top part of the upper arm bone farther away from the shoulder tip, reducing pain but also defeating the therapeutic purpose of the exercise.
 
 **Tracking:**
-- *Primary movement (elevation):* The X-gyro is integrated over time and fused with the accelerometer reading (atan2 of AccZ and AccY) using a complementary filter (96% gyro, 4% accelerometer). This anchors the elevation measurement to gravity and prevents gyroscope drift from accumulating over the duration of a set [16].
+- *Primary movement (elevation):* The X-gyro is integrated over time and fused with the accelerometer reading (atan2 of AccZ and AccY). This anchors the elevation measurement to gravity and prevents gyroscope drift from accumulating over the duration of a set [16].
 - *Cheat detection:* Because the sensor rotates 90° into the air as the arm rises, a forward swing and an internal rotation each project onto different gyro axes depending on arm height. Adding the Y-gyro and Z-gyro integrals together creates a single robust "drift" value that catches both compensation types regardless of arm elevation.
 
 **Feedback:**
@@ -145,7 +145,7 @@ All three exercises use the same underlying **Record & Compare** logic. The ther
 
 **Goal:** With the elbow pinned to the ribcage and bent at 90°, rotate the forearm outward (like opening a door), keeping the upper arm strictly vertical.
 
-**The cheat:** The patient flares the elbow outward away from the ribcage — the "chicken wing" — to compensate for a stiff joint that cannot rotate cleanly.
+**The cheat:** The patient flares the elbow outward away from the ribcage to compensate for a stiff joint that cannot rotate cleanly.
 
 **Tracking:**
 - *Primary movement:* Pure Y-gyro integration (rotation around the humerus bone's long axis).
@@ -161,14 +161,14 @@ All three exercises use the same underlying **Record & Compare** logic. The ther
 
 **Goal:** Lift the arm straight forward in front of the body.
 
-**The cheat:** When pain limits true glenohumeral elevation, patients shrug the shoulder upward and allow the humerus to internally rotate. This creates apparent arm elevation using the scapulothoracic joint instead of the glenohumeral joint, undermining the rehabilitation value of the exercise.
+**The cheat:** When pain limits true forward elevation, patients shrug the shoulder upward and allow the humerus to internally rotate. This results in the arm rotating inward to support the humerus, which results in a wrong exercise.
 
 **Tracking:**
-- *Primary movement:* atan2 applied to the accelerometer to calculate the exact angle of elevation from gravity — no gyro integration needed, giving a highly stable 0–90° reading.
+- *Primary movement:* atan2 applied to the accelerometer to calculate the exact angle of elevation from gravity, no gyro integration needed, giving a highly stable 0–90° reading.
 - *Cheat detection:* Strictly the Y-gyro. A shrug causes the humerus to twist, which maps directly onto the Y-axis. Side-to-side sway is completely ignored to prevent false alarms from small lateral postural shifts.
 
 **Feedback:**
-- Shrug or internal twist detected → Motor 1 (inside) or Motor 3 (outside) pulses.
+- Shrug or internal twist detected → Motor 1 (inside) or Motor 3 (outside) pulses. (mostly inside)
 
 ---
 
@@ -178,9 +178,9 @@ The full Arduino code is in [`/code`](./code). Below are the key programming con
 
 #### 4.1 Record & Compare State Machine
 
-A physical toggle switch flips the device between two modes. This avoids hardcoding any "ideal" arm path.
+A physical toggle switch flips the device between two modes (record and compare). This avoids hardcoding any "ideal" arm path.
 
-**Record Mode:** The therapist guides the arm through one perfect repetition. At each degree of elevation (0–89°), the current combined drift value is saved into a 90-slot array `perfectPath[90]`. This captures the patient's individual anatomy — their natural, microscopic drift tendencies at each height.
+**Record Mode:** The therapist guides the arm through one perfect repetition. At each degree of elevation (0–89°), the current combined drift value is saved into a 90-slot array `perfectPath[90]`. This captures the patient's individual anatomy their natural, microscopic drift at each height.
 
 **Compare Mode:** On every subsequent repetition, the device reads the current elevation, looks up the stored reference drift for that exact elevation, and computes the error:
 
@@ -188,21 +188,12 @@ A physical toggle switch flips the device between two modes. This avoids hardcod
 error = currentDrift - perfectPath[currentElevation]
 ```
 
-Feedback fires only when `|error| > threshold` (currently 15°). This means the patient is not penalized for doing what they always do — only for doing something meaningfully different from the recorded correct path.
+Feedback fires only when `|error| > threshold`. This means the patient is not penalized for doing what they always do, only for doing something meaningfully different from the recorded correct path. The threshold was manually tweeked to find a sweetspot that only detects valid errors. Based on the progress of the patient, the threshold can be lowered.
 
 #### 4.2 The Haptic Tunnel Array
 
 Using the primary movement angle (0–89°) as the array index is the core insight of the system. Every degree of elevation acts as a lookup key for the exact allowed drift at that height. This creates what we call a **haptic tunnel**: a personalized 3D corridor around the correct movement path, rather than a rigid geometric plane.
 
-#### 4.3 Sensor Fusion (Complementary Filter)
-
-Raw gyroscope data suffers from integration drift — small errors in the angular velocity measurement accumulate over time, causing the calculated angle to wander even when the arm is stationary [16, 17]. Raw accelerometer data is accurate for static tilt but noisy and unreliable during dynamic movement. The complementary filter combines both:
-
-```cpp
-elevation = 0.96 * gyroElevation + 0.04 * accelElevation;
-```
-
-The accelerometer (4%) acts as a gravity anchor that continuously corrects the gyroscope (96%) without introducing the noise of the accelerometer into the fast-moving signal. This is a standard and computationally lightweight approach well-suited for microcontroller environments [17].
 
 #### 4.4 I²C Multiplexing
 
@@ -216,11 +207,11 @@ A potentiometer on analog pin A0 maps its 0–1023 ADC range to three exercise m
 
 ## Discussion
 
-The device successfully demonstrated the core concept: by recording a personalized reference path and comparing each repetition against it, the system avoids the fragility of hardcoded thresholds and adapts to each patient's individual anatomy. In testing, the directional haptic feedback was intuitive — the motor buzz on the "wrong" side produced an immediate corrective response without instruction, confirming the body-centered feedback principle described in the literature [14].
+The device successfully demonstrated the core concept: by recording a personalized reference path and comparing each repetition against it, the system avoids the fragility of hardcoded thresholds and adapts to each patient's individual anatomy. In testing, the directional haptic feedback was intuitive, the motor buzz on the "wrong" side produced an immediate corrective response without instruction, confirming the body-centered feedback principle described in the literature [14].
 
-Several limitations are worth noting. The current prototype uses breadboards and jumper wires, making it bulky and mechanically fragile — acceptable for a proof of concept but not for patient use. The threshold value (currently 15°) was set empirically; clinical validation with actual frozen shoulder patients would be needed to determine optimal sensitivity for different stages of recovery. At early stages (high pain, large compensations), a more forgiving threshold may be appropriate; at later stages, tighter correction may accelerate recovery.
+Several limitations are worth noting. The current prototype uses breadboards and jumper wires, making it bulky and mechanically fragil, acceptable for a proof of concept but not for patient use. The threshold values were set empirically; clinical validation with actual frozen shoulder patients would be needed to determine optimal sensitivity for different stages of recovery or another potentiometer to adjust treshold is also an option. At early stages (high pain, large compensations), a more forgiving threshold may be appropriate; at later stages, tighter correction may accelerate recovery.
 
-The complementary filter handles pitch and roll accurately, but yaw (rotation around the vertical axis) is tracked solely by gyroscope integration and will drift over longer sessions. For the targeted exercises — which typically take under 60 seconds per set — this is acceptable, but it is a fundamental limitation of IMU-only tracking without a magnetometer [17]. Adding a magnetometer would close this gap at the cost of sensitivity to nearby ferromagnetic objects.
+The complementary filter handles pitch and roll accurately, but yaw (rotation around the vertical axis) is tracked solely by gyroscope integration and will drift over longer sessions. For the targeted exercises, which typically take under 60 seconds per set, this is acceptable, but it is a fundamental limitation of IMU-only tracking without a magnetometer [17]. Adding a magnetometer would close this gap at the cost of sensitivity to nearby ferromagnetic objects. Another option is an extra push button that re-calibrates the IMU after every movement. 
 
 The Record & Compare model also assumes that the recorded reference path is genuinely correct. If the therapist records the first repetition while the patient is already compensating slightly, the system will consider that compensation normal. A more robust future version could record multiple repetitions and average them, or flag if the recorded path itself deviates from expected biomechanical norms.
 
@@ -228,21 +219,23 @@ The Record & Compare model also assumes that the recorded reference path is genu
 
 ## Conclusion & Future Work
 
-We built a working haptic armband prototype that provides real-time directional vibrotactile feedback to correct compensatory movements during frozen shoulder rehabilitation exercises at home. The system adapts to individual patient anatomy through a record-once, compare-always approach, supports three clinically relevant exercises, and delivers feedback through the most intuitive channel available — a buzz on the side the arm is drifting toward.
+We built a working haptic armband prototype that provides real-time directional vibrotactile feedback to correct compensatory movements during frozen shoulder rehabilitation exercises at home. The system adapts to individual patient anatomy through a record-once, compare-always approach, supports three clinically relevant exercises, and delivers feedback through a intuitive channel, a buzz on the side the arm is drifting toward.
 
 Key lessons for anyone building on this work:
 
 - **Sensor placement geometry matters more than algorithm complexity.** Choosing which IMU axes encode which compensations requires careful biomechanical reasoning. The decision to add Y-gyro and Z-gyro for shoulder abduction cheat detection, for example, emerged from thinking about what happens to the sensor's frame as the arm rotates 90° into the air.
 - **Personalized reference paths outperform fixed thresholds.** Frozen shoulder patients have highly variable anatomy and compensation patterns. A system that learns from each patient is more robust than one tuned to a population average.
-- **Haptic feedback through vibrotactile actuators is genuinely intuitive.** No instruction was needed for users to understand and react to directional motor cues.
+- **Haptic feedback through vibrotactile actuators is intuitive.** No instruction was needed for users to understand and react to directional motor cues.
 
 **Suggested future directions:**
 - Replace breadboard with a custom PCB for a compact, wearable form factor.
-- Add Bluetooth connectivity to log session data for remote physiotherapist review.
+- Add Bluetooth connectivity to log session data for remote physiotherapist review and a laptop does not have to hooked up to the armband.
 - Integrate a magnetometer to eliminate yaw drift for longer sessions.
 - Conduct a clinical pilot study to validate threshold values and measure rehabilitation outcomes.
 - Extend to the left arm by mirroring the motor feedback logic.
 - Explore progressive feedback intensity (gentle buzz for small errors, stronger for large ones) to reduce habituation.
+- Because only motor 1 and 3 have been used in these exercises, finding other exercises or giving more precise feedback with the other motors could be benificial.
+  
 
 ---
 
