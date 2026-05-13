@@ -61,20 +61,21 @@ We built a smart armband strapped to the upper bicep. Four vibration motors are 
 
 ## Supplies (Bill of Materials)
 
-| Component | Specification | Quantity | Part Number / Link | Unit Cost (€) | Total Cost (€) |
+| Component | Specification | Quantity | Unit Cost (€) | Total Cost (€) | Link |
 |-----------|--------------|----------|-------------------|--------------|---------------|
-| Microcontroller | Arduino Micro | 1 | | | |
-| IMU | MPU-6050 6-axis accelerometer + gyroscope | 1 | | | |
-| Haptic driver | Adafruit DRV2605L breakout | 4 | | | |
-| Haptic actuator | Drake coin vibration motor (ERM) | 4 | | | |
-| I²C multiplexer | TCA9548A 8-channel | 1 | | | |
-| Potentiometer | 10 kΩ rotary | 1 | | | |
-| Toggle switch | SPDT breadboard switch | 1 | | | |
-| Breadboard | Full-size | 2 | | | |
-| Jumper wires | Male-to-male, assorted | 1 set | | | |
-| Armband | Velcro / fabric sports armband | 1 | | | |
-| USB cable | Micro-USB (for programming) | 1 | | | |
-| **Total** | | | | | |
+| Microcontroller | Arduino Micro | 1 | 22.8  | 22.8 | https://store-usa.arduino.cc/products/arduino-micro?srsltid=AfmBOoqOmlPGU1MdMCBLP-hTbdgPNi0p3_TcjpyfnqicE3iQVruNEMmw |
+| MPU | MPU6050 3-axis Accelerometer & Gyroscope | 1 | 14.27 | 14.27 | https://www.kiwi-electronics.com/nl/adafruit-mpu-6050-6-dof-accel-gyro-sensor-stemma-qt-qwiic-10416?country=BE&gad_source=1&gad_campaignid=19763236734&gbraid=0AAAAADuMvud4R4Jb3JxoH3jmgES3VDk0n&gclid=CjwKCAjwwpDQBhAuEiwAa-4WoyHbDdvW1Rgtbzx92gf3LW2IVdpizPV3cVVZjad24jZp8Ljh58IAsxoC5zQQAvD_BwE |
+| Haptic driver | DRV2605L haptic driver | 4 | 7.95 | 31.8 | https://www.adafruit.com/product/2305?srsltid=AfmBOorikBqnUsKpXNQIWDLsYL4QLgvpITcLVy6EEXsCToDgyrQhEp5h |
+| Haptic actuator | Drake coin vibration motor (ERM) | 4 | 45 | 180 | https://titanhaptics.com/drake/ |
+| I²C multiplexer | TCA9548A multiplexer | 1 | 7.61 | 7.61 | https://www.kiwi-electronics.com/nl/tca9548a-i2c-multiplexer-2762?gad_source=1&gad_campaignid=19164348148&gbraid=0AAAAADuMvueQ0IGY3iuRwZz8CfOqrcUnd&gclid=CjwKCAjwwpDQBhAuEiwAa-4Wo1jyZ3lv8GuMbRCztaxt-2ZoNF_Oe3MQoX75S2JNoFoyHFyHefmsoBoCcLcQAvD_BwE |
+| Potentiometer | Potentiometer | 1 | 6.05 | 6.05 | https://benl.rs-online.com/web/p/potentiometers/0168140 |
+| Toggle switch | SPDT breadboard switch | 1 | 1.28 | 1.28 | https://my.cytron.io/p-3-pins-toggle-switch |
+| Breadboard | Full-size | 2 | 5.43 | 10.86 | https://www.kiwi-electronics.com/en/830pt-full-size-breadboard-clear-3008?country=&srsltid=AfmBOopwuADybawq9328TPb0beMXdAZK31OiWwYhA9ZjTtCd03kLwj3Io-4 |
+| Jumper wires | Jumper Wires 7" M/M, 30 piecesd | 1 set | 5.99 | 11.98 | https://www.antratek.be/7-jumper-wires-30-stuks |
+| Armband | Sock cutted to size | 1 | 2.79 | 2.79 | https://www.action.com/nl-nl/p/2551930/pairz-sokken/ |
+| USB cable | Micro-USB | 1 | 1.92 | 1.92 | https://www.kiwi-electronics.com/en/microusb-cable-usb-a-to-micro-b-30cm-3314?country=&srsltid=AfmBOopawFb_4JYaETjkVCCnvNtAmQHDoSFpySqLevHTbXIoJG1UuzuYvfU |
+| **Total** | | | | 291.36 | |
+
 
 ---
 
