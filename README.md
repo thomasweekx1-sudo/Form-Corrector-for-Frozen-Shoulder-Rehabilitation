@@ -101,7 +101,7 @@ The feedback principle is intentionally intuitive: **the motor that buzzes is on
 
 The four DRV2605L drivers share the I²C bus via a TCA9548A multiplexer, since all four drivers have the same fixed I²C address. The multiplexer is also used to address the IMU on a separate channel. All components are mounted on two breadboards strapped to the arm alongside the motors.
 
-A potentiometer selects between the three exercises. A toggle switch controls the Record/Compare state machine. Full wiring details are in [schematics](./visuals/schematics)
+A potentiometer selects between the three exercises. A toggle switch controls the Record/Compare state machine. Full wiring details are in [Schematics](./visuals/Schematics)
 ---
 
 ### Step 2 — Hardware Assembly
@@ -114,7 +114,7 @@ A potentiometer selects between the three exercises. A toggle switch controls th
 6. Connect the toggle switch to analog pin A3 with INPUT_PULLUP.
 7. Secure both breadboards, the Arduino, and all four motors to the armband. Motors are positioned at the four anatomical locations described above. The IMU is placed flat against the lateral bicep.
 
-See [schematics](./visuals/schematics) for the full wiring diagram.
+See [schematics](./visuals/Schematics) for the full wiring diagram.
 
 ---
 
