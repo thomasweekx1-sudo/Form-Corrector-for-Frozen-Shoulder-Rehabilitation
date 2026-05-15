@@ -1,6 +1,6 @@
 # Form-Corrector-for-Frozen-Shoulder-Rehabilitation
 
-**Vik Mouling & Thomas Weekx — KU Leuven, B-KUL-T4lMD2 Haptic Interfaces Experience, 2026**
+**Vik Mouling & Thomas Weekx —  Haptic Interfaces Experience, 2026**
 
 ---
 
