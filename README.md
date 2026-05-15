@@ -74,7 +74,9 @@ We built a smart armband strapped to the upper bicep. Four vibration motors are 
 | Jumper wires | Jumper Wires 7" M/M, 30 piecesd | 1 set | 5.99 | 11.98 | https://www.antratek.be/7-jumper-wires-30-stuks |
 | Armband | Sock cutted to size | 1 | 2.79 | 2.79 | https://www.action.com/nl-nl/p/2551930/pairz-sokken/ |
 | USB cable | Micro-USB | 1 | 1.92 | 1.92 | https://www.kiwi-electronics.com/en/microusb-cable-usb-a-to-micro-b-30cm-3314?country=&srsltid=AfmBOopawFb_4JYaETjkVCCnvNtAmQHDoSFpySqLevHTbXIoJG1UuzuYvfU |
-| **Total** | | | | 291.36 | |
+| Velcro | Zelfklevende klittenbandsluiting | 1 | 0.99 | 0.99 | https://www.action.com/fr-ch/p/3205640/bande-auto-agrippante-adhesive/ |
+| Double sided tape | Bison dubbelzijdig montagetape | 1 | 2.95 | 2.95 | https://www.action.com/nl-be/p/3224427/bison-dubbelzijdig-montagetape/ |
+| **Total** | | | | 295.30 | |
 
 
 ---
@@ -110,10 +112,10 @@ A potentiometer selects between the three exercises. A toggle switch controls th
 1. Wire the TCA9548A multiplexer to the Arduino Micro's I²C pins (SDA, SCL). Power it from the 3.3 V rail.
 2. Connect the MPU6050 to multiplexer channel 5.
 3. Connect the four DRV2605L breakout boards to multiplexer channels 1–4 respectively.
-4. Wire each DRV2605L's motor output pins to its corresponding Drake ERM motor. Also connect the motor's enable pin to Arduino digital pins 10–13 for direct PWM control alongside the DRV2605L trigger.
+4. Wire each DRV2605L's motor output pins to its corresponding Drake motor. Also connect the motor's enable pin to Arduino digital pins 10–13 for direct PWM control alongside the DRV2605L trigger.
 5. Connect the potentiometer (exercise selector) to analog pin A0.
-6. Connect the toggle switch to analog pin A3 with INPUT_PULLUP.
-7. Secure both breadboards, the Arduino, and all four motors to the armband. Motors are positioned at the four anatomical locations described above. The IMU is placed flat against the lateral bicep.
+6. Connect the toggle switch to analog pin A3.
+7. Secure both breadboards, the Arduino, and all four motors to the armband. The breadboard is placed on the armband with the use of double sided tape and velcro. In that way, the breadboard can be taken of the band. Motors are positioned at the four anatomical locations described above. The IMU is placed flat against the lateral bicep.
 
 See [schematics](./visuals/Schematics) for the full wiring diagram.
 
